@@ -12,11 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<Result> _result;
+  Future<PostsGet> _postsGet;
 
   @override
   void initState() {
-    _result = API_Manager().getPosts();
+    _postsGet = API_Manager().getPosts();
     super.initState();
   }
 
@@ -27,17 +27,26 @@ class _HomePageState extends State<HomePage> {
         title: Text('Blog App'),
       ),
       body: Container(
-        child: FutureBuilder(
-          future: _result,
+        child: FutureBuilder<PostsGet>(
+          future: _postsGet,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(itemBuilder: (context, index) {
-                return Container(
-                  height: 100,
-                  color: Colors.red,
-                );
-              });
-            }
+              return ListView.builder(
+                  itemCount: snapshot.data.result.length,
+                  itemBuilder: (context, index) {
+                    var post = snapshot.data.result[index];
+
+                    return Container(
+                      height: 100,
+                      child: Row(
+                        children: [
+                          Image.network(post.autorImageUrl),
+                        ],
+                      ),
+                    );
+                  });
+            } else
+              return Center(child: CircularProgressIndicator());
           },
         ),
       ),

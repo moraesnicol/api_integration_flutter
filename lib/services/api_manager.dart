@@ -1,29 +1,25 @@
 import 'dart:convert';
 
+import 'package:api_integration_flutter/constants/Strings.dart';
 import 'package:api_integration_flutter/models/postsInfo.dart';
 import 'package:http/http.dart' as http;
 
+// ignore: camel_case_types
 class API_Manager {
-  Future<Result> getPosts() async {
+  Future<PostsGet> getPosts() async {
     var client = http.Client();
-    var result = null;
+    var postsGet;
 
-
-try{
-    var response = await client.get(Uri.parse(
-        'https://run.mocky.io/v3/29ca1a88-ec02-44aa-9d26-214983b174a9'));
-    if (response.statusCode == 200) {
-      var jsonString = response.body;
-      var jsonMap = json.decode(jsonString);
-      result = Result.fromJson(jsonMap);
+    try {
+      var response = await client.get(Uri.parse(Strings.posts));
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        var jsonMap = json.decode(jsonString);
+        postsGet = PostsGet.fromJson(jsonMap);
+      }
+    } catch (Exception) {
+      return postsGet;
     }
+    return postsGet;
   }
-  catch(Exception)
-  {
-
-    return result;
-  }
-  }
-
-  
 }
