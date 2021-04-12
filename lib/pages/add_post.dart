@@ -143,7 +143,7 @@ class _AddBlogState extends State<AddBlogPage> {
                     ),
                   ])
                 : Container(width: 0, height: 0),
-            SizedBox(height: 30),
+            SizedBox(height: 150),
             Container(
               height: 45,
               child: TextFormField(
@@ -166,33 +166,47 @@ class _AddBlogState extends State<AddBlogPage> {
               ),
             ),
             SizedBox(height: 10),
-            Container(
-              height: 45,
-              child: TextFormField(
-                controller: _descriptionController,
-                style: GoogleFonts.nunito(color: Colors.red, fontSize: 16.0),
-                decoration: InputDecoration(
-                  labelStyle: GoogleFonts.nunito(
-                      color: Colors.deepPurpleAccent, fontSize: 16),
-                  labelText: 'Digite aqui o que você quer compartilhar',
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.pink, width: 3)),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.pink, width: 3)),
+            Column(
+              children: [
+                Container(
+                  width: 400,
+                  child: TextFormField(
+                    controller: _descriptionController,
+                    style:
+                        GoogleFonts.nunito(color: Colors.red, fontSize: 16.0),
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.nunito(
+                          color: Colors.deepPurpleAccent, fontSize: 16),
+                      labelText: 'Digite aqui o que você quer compartilhar',
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.pink, width: 3)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Colors.pink, width: 3)),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             SizedBox(height: 20),
-            TextButton(
-              onPressed: _uploadBlog,
-              child: Text('Postar', style: GoogleFonts.roboto()),
-              style: TextButton.styleFrom(
-                  primary: Colors.teal,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  backgroundColor: Colors.red),
+            Column(
+              children: [
+                Container(
+                  height: 50,
+                  width: 100,
+                  child: TextButton(
+                    onPressed: _uploadBlog,
+                    child: Text('Postar', style: GoogleFonts.roboto()),
+                    style: TextButton.styleFrom(
+                        textStyle: TextStyle(fontWeight: FontWeight.bold),
+                        primary: Colors.white,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        backgroundColor: Colors.deepPurpleAccent),
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 30),
             !_isLoading
