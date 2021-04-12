@@ -1,4 +1,7 @@
+import 'package:api_integration_flutter/pages/add_post.dart';
 import 'package:flutter/material.dart';
+
+
 
 import 'pages/home_page.dart';
 
@@ -13,11 +16,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Blog App',
+      
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
-      home: HomePage()
+      
+      home: HomePage(),
+      routes: <String, WidgetBuilder> {
+      '/addpost': (BuildContext context) => AddBlogPage(),
+     
+    },
     );
   }
 }
-
